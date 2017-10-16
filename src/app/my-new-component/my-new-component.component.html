@@ -1,0 +1,26 @@
+
+<div class="container">
+ <div class="row mt-5 text-center">
+  <div class="col-md-12">
+	<p>Įvesti mašinos numerį, spausti "Toliau"</p>
+	<form>
+	 <input 
+ 	[attr.maxlength]="maxlength"
+ 	id="str"
+	 [(ngModel)]="str"
+ 	name="nr"
+ 	(keypress)="restrictSpace($event)"
+ 	onpaste="return false" 
+ 	placeholder="mašinos numeris" 
+ 	required>
+	</form>
+	</div>
+</div>
+
+ <div class="row mt-2 text-center">
+	<div class="col-md-12">
+      <button class="btn btn-primary" (click)="clicked()">Toliau</button>
+       <p id="error">{{error}}</p>
+	</div>
+  </div>
+</div>

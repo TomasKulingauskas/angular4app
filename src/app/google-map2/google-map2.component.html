@@ -1,0 +1,26 @@
+
+<div class="container">
+  <div class="row mt-5 text-center">
+   <div class="col-12">		
+	<p>Tech. pagalbos preliminarus atvykimo laikas: {{time | date: 'jm'}}</p>
+	<agm-map 
+	[latitude]="location['latitude']+0.006"
+	[longitude]="location['longitude']"
+	[zoom]="15">
+ 	 <agm-marker 	
+ 	 [latitude]="location['latitude']+0.006" 
+ 	 [longitude]="location['longitude']+0.006"
+	 [visible]="state" 	
+  	 [markerDraggable]="false">
+ 	 </agm-marker>
+	</agm-map>
+</div>
+</div>	
+<div class="row mt-4 text-center">
+ <div class="col-12">	
+   <p>Pas jus važiuoja Kęstas Šabaniauskas +37060011222</p>
+	<button class="btn btn-primary" 
+		(click)="call()">Skambinti</button>
+    </div>
+  </div>
+</div>	

@@ -1,0 +1,19 @@
+
+<div class="container">
+	<div class="row mt-5 text-center">
+		<div class="col-12">
+			<p>Pasirinkite savo buvimo vietą, tempkite žymeklį. Kad jūsų vieta būtų kuo tikslesnė, įjunkite GPS.</p>
+			<agm-map 
+			[latitude]="location['latitude']"
+			[longitude]="location['longitude']"
+			[zoom]="16">
+ 			 <agm-marker 
+ 			 [latitude]="location['latitude']" 
+ 	 		[longitude]="location['longitude']"
+  	 		[markerDraggable]="true">
+ 		 </agm-marker>
+		</agm-map>
+		<button class="btn btn-primary mt-3" 
+		(click)="open()"><p>Stebėti tech. pagalbos atvykimą</p></button>	
+	</div>
+</div>		
