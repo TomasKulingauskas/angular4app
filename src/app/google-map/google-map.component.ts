@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {Router} from "@angular/router";
-import { GoogleMap2Component } from './../google-map2/google-map2.component';
-import { MyNewComponentComponent } from './../my-new-component/my-new-component.component';
-
+import { Router } from "@angular/router";
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-google-map',
@@ -14,26 +10,20 @@ import { MyNewComponentComponent } from './../my-new-component/my-new-component.
 
 export class GoogleMapComponent implements OnInit {
 
-location = {};
+    location = {}; //objektas koordinatėms saugoti
 
-open() {
-   this.router.resetConfig([
- 	{path: '', component: MyNewComponentComponent},
- 	{path: 'google-map', component: GoogleMapComponent},
- 	{path: 'google-map2', component: GoogleMap2Component},
-    ]);
-    
-   this.router.navigateByUrl('google-map2');
-  }
+    navigate() {                            
+      this.user.setUserLoggedIn(); 
+      this.router.navigate(['google-map2']);     //perkelia į tech. pagalbos žemėlapį
+    }
       
-   constructor(private router: Router) { }
+constructor(private router: Router, private user: UserService) {}
 
-ngOnInit(){
- if(navigator.geolocation){
+ngOnInit() {
+    if(navigator.geolocation){    //funkcija vartotojo koordinatėms gauti                                   
       navigator.geolocation.getCurrentPosition(position => {
-        this.location = position.coords;
-         
+      this.location = position.coords;
       });
     }
   }
- }   
+}   

@@ -4,15 +4,18 @@ import { AgmCoreModule } from '@agm/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MyNewComponentComponent } from './my-new-component/my-new-component.component';
-import { DataService } from './data.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { GoogleMap2Component } from './google-map2/google-map2.component';
 import { FormsModule } from '@angular/forms';
-
+import { UserService } from './user.service';
+import { AuthGuard } from './auth.guard';
+ 
 
 export const ROUTES: Routes = [
-  { path: '**', component: MyNewComponentComponent },
+    { path: '', component: MyNewComponentComponent },
+    { path: 'google-map',  component: GoogleMapComponent, canActivate: [ AuthGuard ] },
+    { path: 'google-map2', component: GoogleMap2Component, canActivate: [ AuthGuard ] },
+    { path: '**', redirectTo: '' }
   ];
 
 
@@ -28,13 +31,12 @@ export const ROUTES: Routes = [
     BrowserModule,
     RouterModule,
     RouterModule.forRoot(ROUTES),
-    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDbXKBUS0TghDXKvIIX32mNvKylfTLpyw4'
     })
   ],
   entryComponents: [GoogleMapComponent, GoogleMap2Component],
-  providers: [DataService],
+  providers: [UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

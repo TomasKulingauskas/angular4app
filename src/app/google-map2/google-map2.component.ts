@@ -1,36 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-google-map2',
   templateUrl: './google-map2.component.html',
   styleUrls: ['./google-map2.component.css']
 })
+
 export class GoogleMap2Component implements OnInit {
   
-  call(){
-    alert("Skambina...");
-  }
-  
-	location = { }
+    location = {};   
 
-  time: number = Date.now()+1000000;
+    time: number = Date.now()+1000000;  //kintamasis atvaizduoti tech. pagalbos atvykimo laikui 
 
-  state: boolean = true;
+    state: boolean = true;  //atvaizduoja tech. pagalbos vietą žemėlapyje
  
-  constructor() {}
-  
-
-  ngOnInit() {
-  if(navigator.geolocation){
+ngOnInit() {
+    if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(position => {
-        this.location = position.coords;
+      this.location = position.coords;
       });
     }
-     setInterval(() => {
-                this.state = !this.state;  
-                }, 1000); 
-  }
 
-}
+    setInterval(() => {
+      this.state = !this.state;   //simuliuoja tech. pagalbos judėjimą
+      }, 1000); 
+    }
+  }
